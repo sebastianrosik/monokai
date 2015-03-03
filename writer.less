@@ -11,6 +11,10 @@ atom-text-editor[data-grammar~=gfm] {
   background-color: @writer-bg00;
   color: @writer-text01;
 
+  .wrap-guide {
+    display: none;
+  }
+
   &::shadow {
     .string {
       color: @writer-text01;
@@ -59,14 +63,6 @@ atom-text-editor[data-grammar~=gfm] {
       }
     }
 
-    .source .markup.raw {
-      display: block;
-    }
-
-    .wrap-guide {
-      display: none;
-    }
-
     .scroll-view {
       margin: auto;
       max-width: 60em;
@@ -88,6 +84,10 @@ atom-text-editor[data-grammar~=gfm] {
 
     .cursor {
       border-color: @writer-cursor;
+    }
+
+    .spell-check-misspelling .region {
+      border-bottom: 1px dashed rgba(250, 128, 114, 1);
     }
   }
 }
