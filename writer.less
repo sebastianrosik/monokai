@@ -1,0 +1,93 @@
+@writer-text00: #333;
+@writer-text01: #555;
+@writer-text02: #7f7f7f;
+@writer-text03: #aaaaaa;
+@writer-bg00: #ececec;
+@writer-bg01: #dedede;
+@writer-bg02: #C2E6F9;
+@writer-cursor: #32B9FF;
+
+atom-text-editor[data-grammar~=gfm] {
+  background-color: @writer-bg00;
+  color: @writer-text01;
+
+  &::shadow {
+    .string {
+      color: @writer-text01;
+    }
+
+    .selection .region {
+      background-color: @writer-bg02 !important;
+      color: @writer-text01 !important;
+    }
+
+    .heading {
+      color: @writer-text00;
+      font-weight: 900;
+    }
+
+    .markup.raw {
+      background: @writer-bg01;
+      color: @writer-text02;
+    }
+
+    .link {
+      color: @writer-text01;
+
+      .punctuation.definition {
+        color: @writer-text03;
+      }
+
+      .entity {
+        color: @writer-text01;
+      }
+
+      .markup.underline {
+        color: @writer-text01;
+      }
+    }
+
+    .markup.code {
+      .support.gfm {
+        background: @writer-bg01;
+        display: block;
+      }
+      .source:not(.gfm) {
+        background: @syntax-background-color;
+        color: @syntax-cursor-color;
+        display: block;
+      }
+    }
+
+    .source .markup.raw {
+      display: block;
+    }
+
+    .wrap-guide {
+      display: none;
+    }
+
+    .scroll-view {
+      margin: auto;
+      max-width: 60em;
+    }
+
+    .gutter {
+      background : @writer-bg00;
+      color: @writer-text00;
+    }
+
+    .line-number.cursor-line.cursor-line-no-selection {
+      background: @writer-bg01;
+    }
+
+    .line-number.cursor-line {
+      background : @writer-bg02;
+      color: @writer-text01;
+    }
+
+    .cursor {
+      border-color: @writer-cursor;
+    }
+  }
+}
