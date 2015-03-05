@@ -1,93 +1,315 @@
+@writer-black: #000;
+@writer-white: #fff;
+@writer-transparent-white: rgba(255,255,255,0.5);
+@writer-yellow-white: #f8f8f0;
+@writer-very-light-grey: #f0f0f0;
+@writer-light-grey: #e0e0e0;
+@writer-medium-grey: #c2e8ff;
+@writer-yellow-grey: #9f9f8f;
+@writer-burnt-orange: #f25a00;
+@writer-pink: #f92672;
+@writer-green: #6aaf19;
+@writer-orange: #fd971f;
+@writer-purple: #ae81ff;
+@writer-cyan: #28c6e4;
 @writer-text00: #333;
 @writer-text01: #555;
 @writer-text02: #7f7f7f;
-@writer-text03: #aaaaaa;
+@writer-text03: #aaa;
+@writer-text04: #4364ba;
 @writer-bg00: #ececec;
-@writer-bg01: #dedede;
-@writer-bg02: #C2E6F9;
-@writer-cursor: #32B9FF;
-
+@writer-bg01: rgba(0, 0, 0, 0.06);
+@writer-bg02: #c2e6f9;
+@writer-cursor: #32b9ff;
 atom-text-editor[data-grammar~=gfm] {
-  background-color: @writer-bg00;
-  color: @writer-text01;
-
-  .wrap-guide {
-    display: none;
-  }
-
-  &::shadow {
-    .string {
-      color: @writer-text01;
+    background-color: @writer-bg00;
+    color: @writer-text01;
+    .wrap-guide {
+        display: none;
     }
-
-    .selection .region {
-      background-color: @writer-bg02 !important;
-      color: @writer-text01 !important;
+    &::shadow {
+        .string {
+            color: @writer-text01;
+        }
+        .selection .region {
+            background-color: @writer-bg02;
+        }
+        .heading {
+            color: @writer-text00;
+            font-weight: 900;
+        }
+        .markup.raw {
+            background: @writer-bg01;
+            color: @writer-text01;
+            &.gfm {
+                background: none;
+            }
+        }
+        .link {
+            color: @writer-text04;
+            .punctuation.definition {
+                color: @writer-text03;
+            }
+            .entity {
+                color: @writer-text01;
+            }
+            .markup.underline {
+                color: @writer-text01;
+            }
+        }
+        .scroll-view {
+            margin: auto;
+            max-width: 60em;
+        }
+        .gutter {
+            background: @writer-bg00;
+            color: @writer-text00;
+        }
+        .line-number.cursor-line.cursor-line-no-selection {
+            background: @writer-bg01;
+        }
+        .line-number.cursor-line {
+            background: @writer-bg02;
+            color: @writer-text01;
+        }
+        .cursor {
+            border-color: @writer-cursor;
+        }
+        .spell-check-misspelling .region {
+            border-bottom: 1px dashed rgba(250, 128, 114, 1);
+        }
+        .markup.code {
+            .support.gfm {
+                display: block;
+                background-color: @writer-transparent-white;
+            }
+            .source:not(.gfm) {
+                display: block;
+                background-color: @writer-transparent-white;
+                color: @writer-black;
+                .invisible-character {
+                    color: @writer-light-grey;
+                }
+                .invisible {
+                    color: @writer-black;
+                }
+                .comment {
+                    color: @writer-yellow-grey;
+                }
+                .entity {
+                    &.name.type {
+                        color: @writer-burnt-orange;
+                        text-decoration: underline;
+                    }
+                    &.other.inherited-class {
+                        font-style: italic;
+                        text-decoration: underline;
+                        color: @writer-green;
+                    }
+                }
+                .keyword {
+                    color: @writer-pink;
+                    &.control {
+                        color: @writer-purple;
+                    }
+                    &.operator {
+                        color: @writer-black;
+                    }
+                    &.other.special-method {
+                        color: @writer-cyan;
+                    }
+                    &.other.unit {
+                        color: @writer-orange;
+                    }
+                }
+                .storage {
+                    color: @writer-pink;
+                    &.type {
+                        font-style: italic;
+                        color: @writer-cyan;
+                    }
+                }
+                .constant {
+                    color: @writer-orange;
+                    &.character.escape {
+                        color: @writer-cyan;
+                    }
+                    &.numeric {
+                        color: @writer-purple;
+                    }
+                    &.language {
+                        color: @writer-purple;
+                    }
+                    &.character {
+                        color: @writer-purple;
+                    }
+                    &.other {
+                        color: @writer-purple;
+                    }
+                    &.other.color {
+                        color: @writer-cyan;
+                    }
+                    &.other.symbol {
+                        color: @writer-green;
+                    }
+                }
+                .variable {
+                    color: @writer-pink;
+                    &.interpolation {
+                        color: darken(@writer-pink, 10%);
+                    }
+                    &.parameter {
+                        font-style: italic;
+                        color: @writer-orange;
+                        &.function {
+                            color: @writer-black;
+                        }
+                    }
+                }
+                .invalid {
+                    color: @writer-yellow-white;
+                    background-color: @writer-pink;
+                }
+                .invalid.deprecated {
+                    color: @writer-yellow-white;
+                    background-color: @writer-purple;
+                }
+                .invalid.illegal {
+                    background-color: @writer-pink;
+                    color: @writer-transparent-white;
+                }
+                .string {
+                    color: @writer-burnt-orange;
+                    &.regexp {
+                        color: @writer-cyan;
+                        .source.ruby.embedded {
+                            color: @writer-orange;
+                        }
+                    }
+                    &.other.link {
+                        color: @writer-pink;
+                    }
+                }
+                .punctuation {
+                    &.definition {
+                        &.comment {
+                            color: @writer-yellow-grey;
+                        }
+                        &.string,
+                        &.variable,
+                        &.parameters,
+                        &.array {
+                            color: @writer-black;
+                        }
+                        &.heading,
+                        &.identity {
+                            color: @writer-cyan;
+                        }
+                        &.bold {
+                            color: @writer-burnt-orange;
+                            font-weight: bold;
+                        }
+                        &.italic {
+                            color: @writer-purple;
+                            font-style: italic;
+                        }
+                    }
+                    &.section.embedded {
+                        color: darken(@writer-pink, 10%);
+                    }
+                }
+                .support {
+                    &.class,
+                    &.type {
+                        font-style: italic;
+                        color: @writer-cyan;
+                    }
+                    &.function {
+                        color: @writer-cyan;
+                        &.any-method {
+                            color: @writer-cyan;
+                        }
+                    }
+                    &.constant {
+                        color: @writer-cyan;
+                    }
+                }
+                .entity {
+                    &.name.function {
+                        color: @writer-green;
+                    }
+                    &.name.class,
+                    &.name.type.class {
+                        text-decoration: underline;
+                        color: @writer-green;
+                    }
+                    &.name.section {
+                        color: @writer-cyan;
+                    }
+                    &.name.tag {
+                        color: @writer-pink;
+                        text-decoration: underline;
+                    }
+                    &.other.attribute-name {
+                        color: @writer-green;
+                        &.id {
+                            color: @writer-cyan;
+                        }
+                    }
+                }
+                .meta {
+                    &.class {
+                        color: @writer-burnt-orange;
+                    }
+                    &.link {
+                        color: @writer-orange;
+                    }
+                    &.require {
+                        color: @writer-cyan;
+                    }
+                    &.selector {
+                        color: @writer-purple;
+                    }
+                    &.separator {
+                        background-color: @writer-medium-grey;
+                        color: @writer-black;
+                    }
+                }
+                .none {
+                    color: @writer-black;
+                }
+                .markup {
+                    &.bold {
+                        color: @writer-orange;
+                        font-weight: bold;
+                    }
+                    &.changed {
+                        color: @writer-purple;
+                    }
+                    &.deleted {
+                        color: @writer-pink;
+                    }
+                    &.italic {
+                        color: @writer-purple;
+                        font-style: italic;
+                    }
+                    &.heading .punctuation.definition.heading {
+                        color: @writer-cyan;
+                    }
+                    &.inserted {
+                        color: @writer-green;
+                    }
+                    &.list {
+                        color: @writer-pink;
+                    }
+                    &.quote {
+                        color: @writer-orange;
+                    }
+                    &.raw.inline {
+                        color: @writer-green;
+                    }
+                }
+            }
+        }
     }
-
-    .heading {
-      color: @writer-text00;
-      font-weight: 900;
-    }
-
-    .markup.raw {
-      background: @writer-bg01;
-      color: @writer-text02;
-    }
-
-    .link {
-      color: @writer-text01;
-
-      .punctuation.definition {
-        color: @writer-text03;
-      }
-
-      .entity {
-        color: @writer-text01;
-      }
-
-      .markup.underline {
-        color: @writer-text01;
-      }
-    }
-
-    .markup.code {
-      .support.gfm {
-        background: @writer-bg01;
-        display: block;
-      }
-      .source:not(.gfm) {
-        background: @syntax-background-color;
-        color: @syntax-cursor-color;
-        display: block;
-      }
-    }
-
-    .scroll-view {
-      margin: auto;
-      max-width: 60em;
-    }
-
-    .gutter {
-      background : @writer-bg00;
-      color: @writer-text00;
-    }
-
-    .line-number.cursor-line.cursor-line-no-selection {
-      background: @writer-bg01;
-    }
-
-    .line-number.cursor-line {
-      background : @writer-bg02;
-      color: @writer-text01;
-    }
-
-    .cursor {
-      border-color: @writer-cursor;
-    }
-
-    .spell-check-misspelling .region {
-      border-bottom: 1px dashed rgba(250, 128, 114, 1);
-    }
-  }
 }
